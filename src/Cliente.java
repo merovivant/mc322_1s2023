@@ -56,9 +56,30 @@ public class Cliente {
     public boolean validarCPF(String cpf){
         cpf = cpf.replaceAll("[^0-9]","");
         if(cpf.length() == 11){
-            return true;
-        } else{
-            return false;
+            long cpf_num = Long.parseLong(cpf);
+            if (cpf_num%11111111111L!=0){
+                String verificadores = cpf.substring(9, 11);
+                if(verificadores.equals(calcularDigitosVerificadores(cpf))){
+                    return true;
+                }
+            } 
+        } 
+        return false;
+    }
+
+    private String calcularDigitosVerificadores(String cpf){
+        int soma = 0, digito1, digito2;
+        for (int peso = 10, i = 0; i<=8; i++, peso--) {
+             soma += Character.getNumericValue(cpf.charAt(i)) * peso;
         }
+        digito1 = (soma*10)%11;
+        digito1 = digito1 == 10 ? 0:digito1;
+        soma = 0;
+        for (int peso=11, i=0; i<=9; i++, peso--){
+            soma += Character.getNumericValue(cpf.charAt(i)) * peso;
+        }
+        digito2 = (soma*10)%11;
+        digito2 = digito2 == 10 ? 0:digito2;
+        return "" + digito1 + digito2;
     }
 }
