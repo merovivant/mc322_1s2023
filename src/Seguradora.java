@@ -4,6 +4,19 @@ public class Seguradora {
     private String email;
     private String endereco;
     
+    public Seguradora(String nome, String telefone, String email, String endereco) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Seguradora [nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", endereco=" + endereco
+                + "]";
+    }
+
     public String getNome() {
         return nome;
     }
