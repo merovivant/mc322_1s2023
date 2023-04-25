@@ -1,30 +1,31 @@
-import java.sql.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ClientePF extends Cliente{
     private Cpf cpf;
     private String genero;
-    private Date dataLicenca;
+    private LocalDate dataLicenca;
     private String educacao;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private String classeEconomica;
-
-    @Override
-    public String toString() {
-        return "ClientePF [cpf=" + cpf + ", genero=" + genero + ", dataLicenca=" + dataLicenca + ", educacao="
-                + educacao + ", dataNascimento=" + dataNascimento + ", classeEconomica=" + classeEconomica + "]";
-    }
-
-    public ClientePF(String nome, String endereco, List<Veiculo> listaVeiculos, Cpf cpf, String genero,
-                    [Date dataLicenca, String educacao, Date dataNascimento, String classeEconomica) {
+    
+    public ClientePF(String nome, String endereco, ArrayList<Veiculo> listaVeiculos, String cpf, String genero,
+    LocalDate dataLicenca, String educacao, LocalDate dataNascimento, String classeEconomica) {
         super(nome, endereco, listaVeiculos);
-        this.cpf = cpf;
+        this.cpf = new Cpf(cpf);
         this.genero = genero;
         this.dataLicenca = dataLicenca;
         this.educacao = educacao;
         this.dataNascimento = dataNascimento;
         this.classeEconomica = classeEconomica;
     }
+
+    @Override
+    public String toString() {
+        return "ClientePF [nome=" + this.getNome() + ", endereco=" + this.getEndereco() + ", listaVeiculos=" + this.getListaVeiculos().toString() +", cpf=" + cpf.getStr() + ", genero=" + genero + ", dataLicenca=" + dataLicenca + ", educacao="
+                + educacao + ", dataNascimento=" + dataNascimento + ", classeEconomica=" + classeEconomica + "]";
+    }
+    
     public Cpf getCpf() {
         return cpf;
     }
@@ -39,10 +40,10 @@ public class ClientePF extends Cliente{
         this.genero = genero;
     }
 
-    public Date getDataLicenca() {
+    public LocalDate getDataLicenca() {
         return dataLicenca;
     }
-    public void setDataLicenca(Date dataLicenca) {
+    public void setDataLicenca(LocalDate dataLicenca) {
         this.dataLicenca = dataLicenca;
     }
 
@@ -53,10 +54,10 @@ public class ClientePF extends Cliente{
         this.educacao = educacao;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

@@ -1,16 +1,16 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public class Cliente {
     private String nome;
     private String endereco;
-    private List<Veiculo> listaVeiculos;
+    private ArrayList<Veiculo> listaVeiculos;
 
     @Override
     public String toString() {
-        return "Cliente [nome=" + nome + ", endereco=" + endereco + ", listaVeiculos=" + listaVeiculos + "]";
+        return "Cliente [nome=" + nome + ", endereco=" + endereco + ", listaVeiculos=" + listaVeiculos.toString() + "]";
     }
 
-    public Cliente(String nome, String endereco, List<Veiculo> listaVeiculos) {
+    public Cliente(String nome, String endereco, ArrayList<Veiculo> listaVeiculos) {
         this.nome = nome;
         this.endereco = endereco;
         this.listaVeiculos = listaVeiculos;
@@ -30,10 +30,10 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public List<Veiculo> getListaVeiculos() {
+    public ArrayList<Veiculo> getListaVeiculos() {
         return listaVeiculos;
     }
-    public void setListaVeiculos(List<Veiculo> listaVeiculos) {
+    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
         this.listaVeiculos = listaVeiculos;
     }   
 }
