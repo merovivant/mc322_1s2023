@@ -18,7 +18,11 @@ public abstract class Cliente {
         return nome;
     }
     public void setNome(String nome) {
-        this.nome = nome;
+        if(Validacao.validaNome(nome)){
+            this.nome = nome;
+        } else{
+            throw new ExceptionCadastro("Nome inválido!", 1);
+        }
     }
 
     public String getEndereco() {
@@ -28,12 +32,8 @@ public abstract class Cliente {
         this.endereco = endereco;
     }
 
-    public String getListaVeiculos() {
-        String lista="";
-        for(Veiculo veiculo : listaVeiculos){
-            lista+="\n         "+veiculo.toString();
-        }
-        return lista;
+    public ArrayList<Veiculo> getListaVeiculos() {
+        return listaVeiculos;
     }
     public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
         this.listaVeiculos = listaVeiculos;
@@ -47,7 +47,5 @@ public abstract class Cliente {
         this.valorSeguro = valorSeguro;
     }   
 
-    // public double calculaScore(){
-
-    // }
+    public abstract double calculaScore();
 }

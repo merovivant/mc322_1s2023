@@ -61,13 +61,14 @@ public class Seguradora {
         this.listaClientes = listaClientes;
     }
     //Método que ira ser responsável pelo cadastro de clientes, recebendo por parâmetro o objeto já pronto do cliente que será cadastrado
-    public Boolean CadastrarCliente(Cliente cliente){
+    public Boolean cadastrarCliente(Cliente cliente){
         listaClientes.add(cliente);
+        calcularPrecoSeguroCliente(cliente);
         return true;
     }
     //O método irá receber por pârametro o nome completo do cliente a ser removido e então irá buscar na lista de clientes se o mesmo consta:
     //Se sim, o cliente será removido e o método retornará True, senão False.
-    public Boolean RemoverCliente(String cliente){
+    public Boolean removerCliente(String cliente){
         for(int i=0; i<=listaClientes.size(); i++){
             if(cliente.equals(listaClientes.get(i).getNome())){
                 listaClientes.remove(i);
@@ -79,7 +80,7 @@ public class Seguradora {
     //O método receberá por parâmetro 1 ou 2:
     //Caso 1, irá listar os clientes cadastrados do tipo pessoa física.
     //Caso 2, irá listar os cliente cadatrados do tipo pessoa jurídica.
-    public void ListarClientes(String tipoCliente){
+    public void listarClientes(String tipoCliente){
         switch(tipoCliente){
             case "1":
                 for(Cliente c:listaClientes){
@@ -95,6 +96,10 @@ public class Seguradora {
                     }
                 }
                 break;
+            default:
+                for(Cliente c:listaClientes){
+                    System.out.println("\n"+c.toString());
+                }
         }
     }
 
@@ -105,29 +110,37 @@ public class Seguradora {
         this.listaSinistros = listaSinistros;
     }
     //Método que irá receber o veículo, cliente e endereço e gerar um novo sinistro.
-    public Boolean GerarSinistro(Veiculo veiculo, Cliente cliente, String endereco){
+    public Boolean gerarSinistro(Veiculo veiculo, Cliente cliente, String endereco){
         Sinistro sinistro = new Sinistro(LocalDate.now(), endereco, this, veiculo, cliente);
         listaSinistros.add(sinistro);
         return true;
     }
-    public Boolean visualizarSinistro(String cliente){
-        Boolean flag = false;
+    public int visualizarSinistro(Cliente cliente){
+        int cont = 0;
         for(Sinistro s:listaSinistros){
-            if(s.getCliente().getNome().equals(cliente)){
+            if(s.getCliente().equals(cliente)){
                 System.out.println(s.toString());
-                flag = true;
+                cont++;
             }
             
         }
-        return flag;
+        return cont;
     }
-    public void ListarSinistros(){
+    public void listarSinistros(){
         for(Sinistro s:listaSinistros){
             System.out.println(s.toString());
         }
     }
-    //calcularPrecoSeguroCliente()
-    //calcularReceita()
+    public void calcularPrecoSeguroCliente(Cliente cliente){
+        cliente.setValorSeguro(cliente.calculaScore() * (1 + visualizarSinistro(cliente)));
+    }
+    public void calcularReceita(){
+        double receita = 0;
+        for(Cliente c:listaClientes){
+            receita += c.getValorSeguro();
+        }
+        System.out.println("A receita da seguradora é de: R$"+receita);
+    }
 
 
 }

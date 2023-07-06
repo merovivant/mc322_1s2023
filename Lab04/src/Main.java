@@ -28,25 +28,24 @@ public class Main {
         safeCar.setNome("SafeCar");
         
         //Instanciamento de Clientes
-        ClientePF cliente01 = new ClientePF("Lucas", "Avenida Aguia de Haia, 1200", listaVeiculos01, 
-        "643.113.761-20", "M", LocalDate.now(),"Técnico",LocalDate.of(2003, 03, 25),"C");
+        ClientePF cliente01 = new ClientePF("Lucas", "Avenida Aguia de Haia, 1200", listaVeiculos01,"643.113.761-20", "M", "12/07/2015","Técnico","25/03/2003",2000);
         cliente01.setNome("Lucas Alberto dos Santos");
-        ClientePF cliente02 = new ClientePF("Ana Maria Silva", "Rua das Flores, 123", listaVeiculos01,"613.185.865-77", "F", LocalDate.of(1992, 5, 12), "Ensino Superior Completo", LocalDate.of(2022, 3, 1), "D");
-        ClientePF cliente03 = new ClientePF("Luiz Fernando Santos", "Avenida Paulista, 456", listaVeiculos01,"129.639.697-81", "M", LocalDate.of(1985, 11, 10), "Ensino Médio Completo", LocalDate.of(2022, 4, 5), "B");
-        ClientePJ cliente04 = new ClientePJ("Empresa de Tecnologia XYZ Ltda", "Rua das Acácias, 789", listaVeiculos02, "75.525.966/0001-20", LocalDate.of(1995, 10, 15),200);
-        ClientePJ cliente05 = new ClientePJ("Indústria de Alimentos ABC S.A.", "Avenida das Oliveiras, 456", listaVeiculos03, "88.215.509/0001-08", LocalDate.of(1980, 8, 22),100);
+        ClientePF cliente02 = new ClientePF("Ana Maria Silva", "Rua das Flores, 123", listaVeiculos01,"768.317.220-08", "F", "12 05 1992", "Ensino Superior Completo", "01/03/2022", 2500);
+        ClientePF cliente03 = new ClientePF("Luiz Fernando Santos", "Avenida Paulista, 456", listaVeiculos01,"327.954.340-16", "M", "10.11.2019", "Ensino Médio Completo", "05.04.2022", 4500);
+        ClientePJ cliente04 = new ClientePJ("Empresa de Tecnologia XYZ Ltda", "Rua das Acácias, 789", listaVeiculos02, "69.142.210/0001-10", "15/10/1995", 200);
+        ClientePJ cliente05 = new ClientePJ("Indústria de Alimentos ABC S.A.", "Avenida das Oliveiras, 456", listaVeiculos03, "14.606.532/0001-81", "22/08/1980", 100);
             //OBS: os métodos validarCPF e validarCNPJ são chamados nos respectivos construtores das classes CPF e CNPJ.
 
         //Cadastrando alguns clientes na seguradora SafeCar:
-        safeCar.CadastrarCliente(cliente01);
-        safeCar.CadastrarCliente(cliente02);
-        safeCar.CadastrarCliente(cliente04);
-        safeCar.CadastrarCliente(cliente05);
-        safeCar.RemoverCliente("Ana Maria Silva");
+        safeCar.cadastrarCliente(cliente01);
+        safeCar.cadastrarCliente(cliente02);
+        safeCar.cadastrarCliente(cliente04);
+        safeCar.cadastrarCliente(cliente05);
+        safeCar.removerCliente("Ana Maria Silva");
 
         //Instanciando um sinsistro e gerando o mesmo:
         Sinistro sinistro = new Sinistro(LocalDate.now(), "Rua Doutor Shigeo Mori, 2009", safeCar, veiculo05, cliente01);
-        safeCar.GerarSinistro(veiculo05, cliente01, "Rua Doutor Shigeo Mori, 2009");
+        safeCar.gerarSinistro(veiculo05, cliente01, "Rua Doutor Shigeo Mori, 2009");
 
         // //Chamando o método toString de cada classe:
         // System.out.println(cliente01.toString()+"\n");
@@ -55,6 +54,7 @@ public class Main {
         // safeCar.visualizarSinistro("Lucas Alberto dos Santos");
         //     //O toString do sinistro é chamado quando se visualiza o mesmo.
         // System.out.println("\n"+cliente04.toString()+"\n");
+        //safeCar.listarClientes("1"); //Não adianta chamar porque o menu sobrepõe e limpa a tela, mas o menu também lista os clientes e chama os métodos toString quando necessário
 
         GerarMenu(safeCar);
     }

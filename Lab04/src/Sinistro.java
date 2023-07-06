@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Sinistro {
     private int id;
@@ -21,8 +22,12 @@ public class Sinistro {
 
     @Override
     public String toString() {
-        return "Sinistro [ID=" + id + ", Data=" + data + ", Endereço=" + endereco + ", Seguradora=" + seguradora.getNome()
-                + ", Veículo=" + veiculo.getMarca() + "-" +veiculo.getModelo() + ", Cliente=" + cliente.getNome() + "]";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return "   Sinistro " + id + 
+        "\n   Data: " + getData().format(formatter) + 
+        "\n   Endereço: " + endereco + 
+        "\n   Seguradora: " + seguradora.getNome() +
+        "\n   Veículo: " + veiculo.toString();
     }
     public int getId() {
         return id;
